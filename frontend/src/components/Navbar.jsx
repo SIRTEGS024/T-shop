@@ -1,4 +1,11 @@
-import { Lock, LogIn, LogOut, ShoppingCart, UserPlus } from "lucide-react";
+import {
+  Loader,
+  Lock,
+  LogIn,
+  LogOut,
+  ShoppingCart,
+  UserPlus,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../store/useUserStore";
 import { useCartStore } from "../store/useCartStore";
@@ -36,8 +43,18 @@ const Navbar = () => {
                 />
                 <span className="hidden sm:inline">Cart</span>
                 {cart.length > 0 && (
-                  <span className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out">
-                    {cart.length}
+                  <span
+                    className={`absolute -top-2 -left-2 text-white rounded-full px-2 py-0.5 text-xs transition duration-300 ease-in-out ${
+                      !cartStoreLoading
+                        ? "bg-emerald-500 group-hover:bg-emerald-400"
+                        : ""
+                    }`}
+                  >
+                    {cartStoreLoading ? (
+                      <Loader className="size-4 animate-spin text-muted-foreground" />
+                    ) : (
+                      cart.length
+                    )}
                   </span>
                 )}
               </Link>
