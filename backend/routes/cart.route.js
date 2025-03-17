@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/", protectRoute, addToCart);
 router.get("/", protectRoute, getCartProducts);
 router.delete("/:id", protectRoute, removeAllFromCart);
+router.delete('/', protectRoute, removeAllFromCart);
 router.put("/:id", protectRoute, updateQuantity);
 
 

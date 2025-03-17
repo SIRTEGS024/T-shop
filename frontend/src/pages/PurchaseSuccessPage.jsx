@@ -13,19 +13,15 @@ const PurchaseSuccessPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("hello");
-    
     const handleCheckoutSuccess = async (sessionId) => {
       try {
         await axios.post("/payments/checkout-success", {
           sessionId,
         });
-      console.log(total);
         if (total >= 200) {
           createCoupon(user._id);
         }
         clearCart();
-        
       } catch (error) {
         console.log(error);
       } finally {
@@ -42,7 +38,7 @@ const PurchaseSuccessPage = () => {
       setIsProcessing(false);
       setError("No session ID found in the URL");
     }
-  }, [clearCart,createCoupon,total]);
+  }, [clearCart, createCoupon, total]);
 
   if (isProcessing) return "Processing...";
 
