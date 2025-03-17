@@ -11,6 +11,7 @@ import LoadingSinner from "../components/LoadingSinner";
 
 const CartPage = () => {
 	const { cart, cartStoreLoading } = useCartStore();
+	
  if(cartStoreLoading) return <LoadingSinner/>;
 	return (
 		<div className='py-8 md:py-8'>

@@ -27,7 +27,7 @@ const Navbar = () => {
           <nav className="flex flex-wrap items-center gap-4">
             <Link
               to={"/"}
-              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
+              className="text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out max-[500px]:hidden"
             >
               Home
             </Link>
