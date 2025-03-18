@@ -50,6 +50,12 @@ To test the checkout process, use the following **test card**:
 
 ---
 
+## **Testing the Coupon Feature 🎟️**  
+
+To receive a **free coupon** for your next purchase, buy products worth **$200 or more** during checkout. The coupon will be applied automatically in your next shopping session.  
+
+---
+
 ## **Admin Login Credentials 🔑**  
 
 To access **admin features**, use the login credentials:  
