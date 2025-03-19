@@ -17,6 +17,7 @@ T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe,
 - 👑 **Admin Dashboard**  
 - 📊 **Sales Analytics**  
 - 🎨 **Styled with Tailwind CSS**  
+- 🔄 **State Management with Zustand**  
 - 🔒 **Security & Data Protection**  
 - 🚀 **Caching with Redis**  
 - 🌎 **Full-Stack Deployment**  
@@ -35,6 +36,7 @@ T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe,
 ### **Frontend:**  
 - **React.js** with **Vite**  
 - **Tailwind CSS** for Styling  
+- **Zustand** for State Management  
 - **React Router** for Navigation  
 - **Axios** for API Requests  
 
@@ -68,5 +70,3 @@ Once logged in as an **admin**, you will have access to features such as:
 - **Managing Products & Categories**  
 - **Viewing and Managing Orders**  
 - **Viewing Sales Analytics**  
-
-
