@@ -10,6 +10,7 @@ T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe,
 - 🔐 **Robust Authentication System**  
 - 🔑 **JWT with Refresh/Access Tokens**  
 - ✉️ **Email Verification & Forgot Password** (via **Nodemailer**)  
+  - 📧 *If you don’t see the verification or reset email, please check your spam/junk folder*  
 - 📝 **User Signup & Login**  
 - 📦 **Product & Category Management**  
 - 🛍️ **Shopping Cart Functionality**  
