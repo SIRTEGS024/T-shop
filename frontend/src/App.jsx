@@ -13,11 +13,14 @@ import CartPage from "./pages/CartPage";
 import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
 import PurchaseCancelPage from "./pages/PurchaseCancelPage";
 import { useCartStore } from "./store/useCartStore";
+import EmailVerificationPage from "./pages/EmailVerificationPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
-  const { getCartItems} = useCartStore();
-  
+  const { getCartItems } = useCartStore();
+
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
@@ -29,6 +32,7 @@ function App() {
 
   if (checkingAuth) return <LoadingSinner />;
 
+
   return (
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -39,7 +43,7 @@ function App() {
           />
         </div>
       </div>
-      <div className="relative z-50 pt-20">
+      <div className="relative z-50 mt-20">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -49,30 +53,106 @@ function App() {
           />
           <Route
             path="/login"
-            element={!user ? <LoginPage /> : <Navigate to="/" />}
+            element={
+              !user ? (
+                <LoginPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
           />
           <Route
             path="/secret-dashboard"
             element={
-              user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />
+              user?.role === "admin" && user?.isVerified ? (
+                <AdminPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route
             path="/cart"
-            element={user ? <CartPage /> : <Navigate to="/login" />}
+            element={
+              user && user?.isVerified ? (
+                <CartPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
           <Route
             path="/purchase-success"
-            element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />}
+            element={
+              user && user?.isVerified ? (
+                <PurchaseSuccessPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
           <Route
             path="/purchase-cancel"
-            element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />}
+            element={
+              user && user?.isVerified ? (
+                <PurchaseCancelPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
           />
+          <Route
+            path="/verify-email"
+            element={
+              user && !user?.isVerified ? (
+                <EmailVerificationPage />
+              ) : user?.isVerified ? (
+                <Navigate to="/" />
+              ) : (
+                <Navigate to="/login" />
+              )
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              !user ? (
+                <ForgotPasswordPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/reset-password/:token"
+            element={
+              !user ? (
+                <ResetPasswordPage />
+              ) : !user?.isVerified ? (
+                <Navigate to="/verify-email" />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          {/* catch all routes */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
-      <Toaster  />
+      <Toaster />
     </div>
   );
 }

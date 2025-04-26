@@ -16,9 +16,9 @@ export const createProduct = async (req, res) => {
       image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
       category
     });
-    res.status(201).json(product);
+    return res.status(201).json(product);
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 }
 
@@ -41,10 +41,10 @@ export const deleteProduct = async (req, res) => {
       if (product.isFeatured) {
         await featuredProductsCache();
       }
-      res.json({ message: "Product deleted successfully" });
+      return res.json({ message: "Product deleted successfully" });
     }
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 }
 
@@ -53,9 +53,9 @@ export const getAllProducts = async (req, res) => {
 
   try {
     const products = await Product.find({});
-    res.json({ products });
+    return res.json({ products });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 }
 
@@ -94,9 +94,9 @@ export const getRecommendedProducts = async (req, res) => {
         }
       }
     ]);
-    res.json(products);
+    return res.json(products);
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 }
 
@@ -104,9 +104,9 @@ export const getProductsByCategory = async (req, res) => {
   const { category } = req.params;
   try {
     const products = await Product.find({ category });
-    res.json({ products });
+    return res.json({ products });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    return res.status(500).json({ message: "Server error", error: error.message });
   }
 }
 
@@ -118,7 +118,7 @@ export const toggleFeaturedProduct = async (req, res) => {
       product.isFeatured = !product.isFeatured;
       const updatedProduct = await product.save();
       await featuredProductsCache();
-      res.json(updatedProduct);
+      return res.json(updatedProduct);
     } else {
       return res.status(404).json({ message: "Product not found" });
     }

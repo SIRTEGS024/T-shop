@@ -16,7 +16,7 @@ export const createCheckoutSession = async (req, res) => {
   try {
     const { products, couponCode } = req.body;
     if (!Array.isArray(products) || products.length === 0) {
-      res.status(400).json({ message: "Invalid or empty products array" });
+      return res.status(400).json({ message: "Invalid or empty products array" });
     }
     let totalAmount = 0;
     const lineItems = products.map(product => {
@@ -65,9 +65,9 @@ export const createCheckoutSession = async (req, res) => {
         ),
       },
     });
-    res.status(200).json({ id: session.id, totalAmount: totalAmount });
+    return res.status(200).json({ id: session.id, totalAmount: totalAmount });
   } catch (error) {
-    res.status(500).json({ message: "Error processing checkout", error: error.message });
+    return res.status(500).json({ message: "Error processing checkout", error: error.message });
   }
 }
 
@@ -89,25 +89,26 @@ export const checkoutSuccess = async (req, res) => {
         )
       }
       const products = JSON.parse(session.metadata.products);
-      
-      const newOrder = new Order({
-        userId: session.metadata.userId,
-        products: products.map(product => ({
-          product: product.id,
-          quantity: product.quantity,
-          price: product.price
-        })),
-        totalAmount: session.amount_total / 100,
-        stripeSessionId: sessionId
-      });
-      await Order.findOneAndDelete({ stripeSessionId:newOrder.stripeSessionId })
-      await newOrder.save();
-      res.status(200).json({
+      await Order.findOneAndUpdate(
+        { stripeSessionId: sessionId },
+        {
+          userId: session.metadata.userId,
+          products: products.map(product => ({
+            product: product.id,
+            quantity: product.quantity,
+            price: product.price,
+          })),
+          totalAmount: session.amount_total / 100,
+          stripeSessionId: sessionId,
+        },
+        { upsert: true, new: true }
+      );
+      return res.status(200).json({
         success: true,
         message: "Payment successful, order created and coupon deactivated if used"
       });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error processing successful checkout", error: error.message });
+    return res.status(500).json({ message: "Error processing successful checkout", error: error.message });
   }
 }

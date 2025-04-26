@@ -1,6 +1,6 @@
 # **T-Shop 🛍️**  
 
-T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe, JWT, and React**, featuring authentication, payments, an admin dashboard, and more.  
+T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe, JWT, Nodemailer, and React**, featuring authentication, email verification, password reset, payments, an admin dashboard (best viewed on desktop), and more.  
 
 ---
 
@@ -9,15 +9,15 @@ T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe,
 - 💳 **Stripe Payment Setup**  
 - 🔐 **Robust Authentication System**  
 - 🔑 **JWT with Refresh/Access Tokens**  
+- ✉️ **Email Verification & Forgot Password** (via **Nodemailer**)  
 - 📝 **User Signup & Login**  
 - 📦 **Product & Category Management**  
 - 🛍️ **Shopping Cart Functionality**  
 - 💰 **Checkout with Stripe**  
 - 🏷️ **Coupon Code System**  
-- 👑 **Admin Dashboard**  
+- 👑 **Admin Dashboard** *(optimized for desktop view)*  
 - 📊 **Sales Analytics**  
 - 🎨 **Styled with Tailwind CSS**  
-- 🔄 **State Management with Zustand**  
 - 🔒 **Security & Data Protection**  
 - 🚀 **Caching with Redis**  
 - 🌎 **Full-Stack Deployment**  
@@ -31,12 +31,12 @@ T-Shop is a **full-stack e-commerce store** built with **MongoDB, Redis, Stripe,
 - **MongoDB** for Database  
 - **Redis** for Caching  
 - **JWT Authentication (Access & Refresh Tokens)**  
+- **Nodemailer** for email sending (verification & password reset)  
 - **Stripe** for Payments  
 
 ### **Frontend:**  
 - **React.js** with **Vite**  
 - **Tailwind CSS** for Styling  
-- **Zustand** for State Management  
 - **React Router** for Navigation  
 - **Axios** for API Requests  
 
@@ -62,11 +62,14 @@ To receive a **free coupon** for your next purchase, buy products worth **$200 o
 
 To access **admin features**, use the login credentials:  
 
-- **Email:** `tega@gmail.com`  
-- **Password:** `tega12`  
+- **Email:** `kesienametitiri024@gmail.com`  
+- **Password:** `Tega12@`  
 
 Once logged in as an **admin**, you will have access to features such as:  
 
 - **Managing Products & Categories**  
 - **Viewing and Managing Orders**  
 - **Viewing Sales Analytics**  
+- **Note:** The admin dashboard is **best experienced on a desktop screen** for full layout and analytics visibility.
+
+---

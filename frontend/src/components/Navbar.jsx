@@ -31,7 +31,7 @@ const Navbar = () => {
             >
               Home
             </Link>
-            {user && (
+            {(user && user?.isVerified) && (
               <Link
                 to={"/cart"}
                 className="relative group text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out"
@@ -59,7 +59,7 @@ const Navbar = () => {
                 )}
               </Link>
             )}
-            {isAdmin && (
+            {(isAdmin && user?.isVerified) && (
               <Link
                 className="flex items-center bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded-md font-medium transition duration-300 ease-in-out"
                 to={"/secret-dashboard"}
@@ -68,7 +68,7 @@ const Navbar = () => {
                 <span className="hidden sm:inline">Dashboard</span>
               </Link>
             )}
-            {user ? (
+            {(user && user?.isVerified)? (
               <button
                 className="flex items-center bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out"
                 onClick={logout}

@@ -82,7 +82,7 @@ export const useCartStore = create((set, get) => ({
 				return { cart: newCart };
 			});
 			get().calculateTotals();
-			toast.success("Product added to cart");
+			toast.success("Product added to cart",{id:"product"});
 		} catch (error) {
 			toast.error(error.response.data.message || "An error occurred");
 		}finally{
