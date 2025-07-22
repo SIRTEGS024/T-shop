@@ -15,6 +15,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
+// Enable CORS
+app.use(cors({
+  origin: ['*'], // Allow all origins (use specific domains for better security)
+  credentials: true, // Allow cookies/credentials (matches your Axios withCredentials: true)
+}));
+
 app.use(express.json({ limit: "5mb" }));
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
