@@ -8,6 +8,7 @@ import paymentRoutes from "./routes/payment.route.js"
 import analyticsRoutes from "./routes/analytics.route.js"
 import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'; // Import CORS
 import path from 'path';
 
 dotenv.config();
